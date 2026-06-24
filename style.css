@@ -204,7 +204,7 @@ h2 {
   flex: 0 0 180px;
   height: 110px;
   border-radius: 6px;
-  background: var(--placeholder);
+  background: #ffffff;
 }
 .pub-thumb img {
   width: 100%;
