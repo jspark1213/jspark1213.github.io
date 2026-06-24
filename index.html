@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name</title>
+  <meta name="description" content="Personal homepage of Your Name." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <!-- ===== Header: photo, name, links, bio ===== -->
+    <header class="profile">
+      <img class="avatar" src="assets/photo.jpg" alt="Your Name" />
+      <h1 class="name">Your Name</h1>
+
+      <nav class="links">
+        <a href="mailto:you@example.com">EMAIL</a>
+        <a href="assets/cv.pdf">CV</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LINKEDIN</a>
+        <a href="https://github.com/" target="_blank" rel="noopener">GITHUB</a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener">TWITTER</a>
+        <a href="https://scholar.google.com/" target="_blank" rel="noopener">SCHOLAR</a>
+      </nav>
+
+      <p class="bio">
+        One-line bio goes here &mdash; your role, affiliation, and what you work on.
+      </p>
+    </header>
+
+    <!-- ===== News (collapsible) ===== -->
+    <section class="news">
+      <h2>News</h2>
+      <ul class="news-list">
+        <li><span class="date">2026-01</span> News item placeholder.</li>
+        <li><span class="date">2025-12</span> News item placeholder.</li>
+        <li><span class="date">2025-11</span> News item placeholder.</li>
+      </ul>
+      <input type="checkbox" id="news-toggle" class="news-toggle" />
+      <ul class="news-list news-more">
+        <li><span class="date">2025-10</span> Older news item placeholder.</li>
+        <li><span class="date">2025-09</span> Older news item placeholder.</li>
+      </ul>
+      <label for="news-toggle" class="news-label"></label>
+    </section>
+
+    <!-- ===== Research / Publications ===== -->
+    <section class="research">
+      <h2>Research</h2>
+
+      <article class="pub">
+        <div class="pub-thumb">
+          <img src="assets/pub1.jpg" alt="Project thumbnail" />
+        </div>
+        <div class="pub-info">
+          <a class="pub-title" href="#">Paper Title Goes Here</a>
+          <p class="pub-authors">
+            <span class="me">Your Name</span>, Co-author One, Co-author Two
+          </p>
+          <p class="pub-venue">Venue / Conference, Year</p>
+          <p class="pub-resources">
+            <a href="#">Paper</a>
+            <a href="#">Code</a>
+            <a href="#">Website</a>
+            <a href="#">Video</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="pub">
+        <div class="pub-thumb">
+          <img src="assets/pub2.jpg" alt="Project thumbnail" />
+        </div>
+        <div class="pub-info">
+          <a class="pub-title" href="#">Another Paper Title</a>
+          <p class="pub-authors">
+            Co-author One, <span class="me">Your Name</span>, Co-author Two
+          </p>
+          <p class="pub-venue">Venue / Conference, Year</p>
+          <p class="pub-resources">
+            <a href="#">Paper</a>
+            <a href="#">Code</a>
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===== Talks ===== -->
+    <section class="talks">
+      <h2>Talks</h2>
+      <ul class="talk-list">
+        <li>
+          <span class="date">2026-03</span>
+          Talk title placeholder &mdash; Institution, Location
+          <span class="brackets">[<a href="#">slides</a>] [<a href="#">video</a>]</span>
+        </li>
+        <li>
+          <span class="date">2025-07</span>
+          Talk title placeholder &mdash; Institution, Location
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== Awards ===== -->
+    <section class="awards">
+      <h2>Awards</h2>
+      <ul class="award-list">
+        <li><span class="date">2025</span> Award or honor placeholder.</li>
+        <li><span class="date">2024</span> Award or honor placeholder.</li>
+      </ul>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      &copy; 2026 Your Name
+    </footer>
+
+  </main>
+</body>
+</html>

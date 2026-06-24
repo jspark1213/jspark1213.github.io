@@ -1,0 +1,176 @@
+/* ===== Base ===== */
+:root {
+  --text: #1a1a1a;
+  --muted: #777;
+  --link: #1565c0;
+  --rule: #e6e6e6;
+  --maxw: 760px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* ===== Header / profile ===== */
+.profile {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f0f0f0;
+}
+
+.name {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 20px 0 12px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 18px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.bio {
+  margin: 20px auto 0;
+  max-width: 540px;
+  color: #333;
+}
+
+/* ===== Section headings ===== */
+section { margin-bottom: 44px; }
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.date {
+  display: inline-block;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  margin-right: 10px;
+}
+
+/* ===== News (collapsible via checkbox) ===== */
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.news-list li { margin-bottom: 8px; }
+
+.news-toggle { display: none; }
+
+.news-more { display: none; }
+.news-toggle:checked ~ .news-more { display: block; }
+
+.news-label {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--link);
+  cursor: pointer;
+}
+.news-label::after { content: "↓ SHOW MORE ↓"; }
+.news-toggle:checked ~ .news-label::after { content: "↑ HIDE ↑"; }
+
+/* ===== Research / publications ===== */
+.pub {
+  display: flex;
+  gap: 22px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.pub-thumb {
+  flex: 0 0 180px;
+}
+.pub-thumb img {
+  width: 100%;
+  border-radius: 6px;
+  background: #f0f0f0;
+  display: block;
+}
+
+.pub-info { flex: 1; min-width: 0; }
+
+.pub-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.pub-authors,
+.pub-venue,
+.pub-resources {
+  margin: 6px 0 0;
+}
+
+.pub-authors .me { font-weight: 600; }
+
+.pub-venue { color: var(--muted); font-style: italic; }
+
+.pub-resources a {
+  margin-right: 14px;
+  font-size: 15px;
+}
+
+/* ===== Talks / awards lists ===== */
+.talk-list,
+.award-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.talk-list li,
+.award-list li { margin-bottom: 10px; }
+
+.brackets { color: var(--muted); }
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 560px) {
+  .pub { flex-direction: column; }
+  .pub-thumb { flex-basis: auto; width: 100%; }
+}
