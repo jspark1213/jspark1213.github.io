@@ -1,10 +1,35 @@
 /* ===== Base ===== */
 :root {
+  --bg: #ffffff;
   --text: #1a1a1a;
   --muted: #777;
   --link: #1565c0;
   --rule: #e6e6e6;
+  --placeholder: #f0f0f0;
   --maxw: 760px;
+}
+
+/* Dark palette shared by system-preference and manual override */
+:root[data-theme="dark"],
+:root.theme-dark {
+  --bg: #16181c;
+  --text: #e6e6e6;
+  --muted: #9aa0a6;
+  --link: #6db3f2;
+  --rule: #2c2f34;
+  --placeholder: #24272c;
+}
+
+/* Follow the OS setting when the user hasn't chosen explicitly */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16181c;
+    --text: #e6e6e6;
+    --muted: #9aa0a6;
+    --link: #6db3f2;
+    --rule: #2c2f34;
+    --placeholder: #24272c;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -14,11 +39,32 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   color: var(--text);
-  background: #fff;
+  background: var(--bg);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 17px;
   line-height: 1.6;
+  transition: background 0.2s ease, color 0.2s ease;
 }
+
+/* ===== Theme toggle ===== */
+.theme-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-toggle:hover { border-color: var(--muted); }
 
 .container {
   max-width: var(--maxw);
@@ -34,16 +80,26 @@ a:hover { text-decoration: underline; }
 
 /* ===== Header / profile ===== */
 .profile {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  text-align: left;
   margin-bottom: 48px;
 }
 
+.profile-text { flex: 7; min-width: 0; }
+.profile-photo {
+  flex: 3;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .avatar {
-  width: 160px;
-  height: 160px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: #f0f0f0;
+  background: var(--placeholder);
   overflow: hidden;
 }
 .avatar img {
@@ -54,24 +110,24 @@ a:hover { text-decoration: underline; }
 }
 
 .name {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
-  margin: 20px 0 12px;
+  margin: 0 0 14px;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 6px 18px;
   font-size: 14px;
   letter-spacing: 0.04em;
 }
 
 .bio {
-  margin: 20px auto 0;
+  margin: 18px 0 0;
   max-width: 540px;
-  color: #333;
+  color: var(--muted);
 }
 
 /* ===== Section headings ===== */
@@ -116,6 +172,26 @@ h2 {
 .news-label::after { content: "↓ SHOW MORE ↓"; }
 .news-toggle:checked ~ .news-label::after { content: "↑ HIDE ↑"; }
 
+/* ===== Education ===== */
+.edu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.edu-list li { margin-bottom: 16px; }
+
+.edu-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.edu-school { font-weight: 600; }
+.edu-head .date { margin-right: 0; white-space: nowrap; }
+
+.edu-detail { color: var(--muted); margin-top: 2px; }
+.edu-note { font-style: italic; }
+
 /* ===== Research / publications ===== */
 .pub {
   display: flex;
@@ -128,12 +204,12 @@ h2 {
   flex: 0 0 180px;
   height: 110px;
   border-radius: 6px;
-  background: #f0f0f0;
+  background: var(--placeholder);
 }
 .pub-thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 6px;
   display: block;
 }
@@ -182,6 +258,18 @@ h2 {
 
 /* ===== Responsive ===== */
 @media (max-width: 560px) {
+  .profile {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .profile-photo { justify-content: center; }
+  .links { justify-content: center; }
+  .bio { margin-left: auto; margin-right: auto; }
+
+  .edu-head { flex-direction: column; gap: 0; }
+
   .pub { flex-direction: column; }
   .pub-thumb { flex-basis: auto; width: 100%; }
 }

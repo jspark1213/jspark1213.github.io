@@ -6,37 +6,88 @@
   <title>Jinsoo Park</title>
   <meta name="description" content="Personal homepage of Jinsoo Park." />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    // Apply saved theme before paint to avoid a flash of the wrong theme.
+    (function () {
+      var saved = localStorage.getItem("theme");
+      if (saved === "dark" || saved === "light") {
+        document.documentElement.setAttribute("data-theme", saved);
+      }
+    })();
+  </script>
 </head>
 <body>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
   <main class="container">
 
     <!-- ===== Header: photo, name, links, bio ===== -->
     <header class="profile">
-      <div class="avatar">
-        <img src="assets/photo.jpg" alt="Jinsoo Park"
-             onerror="if(this.dataset.fallback){this.remove()}else{this.dataset.fallback=1;this.src='assets/photo.png'}" />
+      <div class="profile-text">
+        <h1 class="name">Jinsoo Park</h1>
+
+        <nav class="links">
+          <a href="mailto:renew1614@postech.ac.kr">EMAIL</a>
+          <a href="assets/cv.pdf">CV</a>
+          <a href="https://www.linkedin.com/in/jinsoo-park-971b582a0/" target="_blank" rel="noopener">LINKEDIN</a>
+          <a href="https://github.com/jspark1213" target="_blank" rel="noopener">GITHUB</a>
+          <a href="https://scholar.google.com/citations?user=HqwJMs0AAAAJ" target="_blank" rel="noopener">SCHOLAR</a>
+        </nav>
+
+        <p class="bio">
+          One-line bio goes here &mdash; your role, affiliation, and what you work on.
+        </p>
       </div>
-      <h1 class="name">Jinsoo Park</h1>
 
-      <nav class="links">
-        <a href="mailto:renew1614@postech.ac.kr">EMAIL</a>
-        <a href="assets/cv.pdf">CV</a>
-        <a href="#">LINKEDIN</a>
-        <a href="https://github.com/jspark1213" target="_blank" rel="noopener">GITHUB</a>
-        <a href="https://scholar.google.com/citations?user=HqwJMs0AAAAJ" target="_blank" rel="noopener">SCHOLAR</a>
-      </nav>
-
-      <p class="bio">
-        One-line bio goes here &mdash; your role, affiliation, and what you work on.
-      </p>
+      <div class="profile-photo">
+        <div class="avatar">
+          <img src="assets/photo.jpg" alt="Jinsoo Park"
+               onerror="if(this.dataset.fallback){this.remove()}else{this.dataset.fallback=1;this.src='assets/photo.png'}" />
+        </div>
+      </div>
     </header>
 
     <!-- ===== News ===== -->
     <section class="news">
       <h2>News</h2>
       <ul class="news-list">
-        <li><span class="date">2026-06</span> Two papers accepted to ECCV 2026.</li>
-        <li><span class="date">2025-09</span> Joined POSTECH CVLab (Supervisor: <a href="https://jeanyson.github.io" target="_blank" rel="noopener">Jeany Son</a>).</li>
+        <li><span class="date">2026-06</span> Two papers accepted to ECCV 2026. &#127881;</li>
+        <li><span class="date">2025-09</span> Joined <a href="https://cvlab.postech.ac.kr/" target="_blank" rel="noopener">POSTECH CVLab</a> (Supervisor: <a href="https://jeanyson.github.io" target="_blank" rel="noopener">Jeany Son</a>).</li>
+      </ul>
+    </section>
+
+    <!-- ===== Education ===== -->
+    <section class="education">
+      <h2>Education</h2>
+      <ul class="edu-list">
+        <li>
+          <div class="edu-head">
+            <span class="edu-school">Pohang University of Science and Technology (POSTECH)</span>
+            <span class="date">2025.09 &ndash; Present</span>
+          </div>
+          <div class="edu-detail">
+            Integrated M.S./Ph.D., Graduate School of AI
+            &middot; Advisor: <a href="https://jeanyson.github.io" target="_blank" rel="noopener">Jeany Son</a>
+          </div>
+        </li>
+        <li>
+          <div class="edu-head">
+            <span class="edu-school">Gwangju Institute of Science and Technology (GIST)</span>
+            <span class="date">2021.09 &ndash; 2025.08</span>
+          </div>
+          <div class="edu-detail">
+            Integrated M.S./Ph.D., AI Graduate School
+            &middot; Advisor: <a href="https://jeanyson.github.io" target="_blank" rel="noopener">Jeany Son</a>
+            <br />
+            <span class="edu-note">Transferred to POSTECH (no degree conferred)</span>
+          </div>
+        </li>
+        <li>
+          <div class="edu-head">
+            <span class="edu-school">Hongik University</span>
+            <span class="date">2014.03 &ndash; 2021.02</span>
+          </div>
+          <div class="edu-detail">B.S. in Mechanical Engineering</div>
+        </li>
       </ul>
     </section>
 
@@ -83,6 +134,28 @@
     </footer>
 
   </main>
+
+  <script>
+    // Theme toggle: cycles between light and dark, persists the choice,
+    // and defaults to the OS setting when nothing is saved.
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById("theme-toggle");
+      function isDark() {
+        var t = root.getAttribute("data-theme");
+        if (t) return t === "dark";
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+      }
+      function render() { btn.textContent = isDark() ? "☀" : "☾"; }
+      btn.addEventListener("click", function () {
+        var next = isDark() ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        render();
+      });
+      render();
+    })();
+  </script>
 
   <script>
     // Auto-link each publication's thumbnail from its title:
