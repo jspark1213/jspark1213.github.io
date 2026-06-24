@@ -12,7 +12,10 @@
 
     <!-- ===== Header: photo, name, links, bio ===== -->
     <header class="profile">
-      <div class="avatar" aria-label="Jinsoo Park"></div>
+      <div class="avatar">
+        <img src="assets/photo.jpg" alt="Jinsoo Park"
+             onerror="if(this.dataset.fallback){this.remove()}else{this.dataset.fallback=1;this.src='assets/photo.png'}" />
+      </div>
       <h1 class="name">Jinsoo Park</h1>
 
       <nav class="links">
@@ -80,5 +83,22 @@
     </footer>
 
   </main>
+
+  <script>
+    // Auto-link each publication's thumbnail from its title:
+    // assets/paper thumbnails/<title with ":" replaced by "_">.png
+    // If the file is missing, the gray placeholder box stays.
+    document.querySelectorAll('.pub').forEach(function (pub) {
+      var titleEl = pub.querySelector('.pub-title');
+      var thumb = pub.querySelector('.pub-thumb');
+      if (!titleEl || !thumb) return;
+      var fileName = titleEl.textContent.trim().replace(/:/g, '_');
+      var img = document.createElement('img');
+      img.src = 'assets/paper thumbnails/' + fileName + '.png';
+      img.alt = titleEl.textContent.trim();
+      img.onerror = function () { img.remove(); };
+      thumb.appendChild(img);
+    });
+  </script>
 </body>
 </html>
